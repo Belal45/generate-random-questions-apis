@@ -1,0 +1,47 @@
+package com.samla.main.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.samla.main.entities.Question;
+
+@RestController
+@RequestMapping("/API")
+public class MyController {
+	
+	@RequestMapping(value="/saveQuestions" ,method=RequestMethod.GET)
+	public ResponseEntity<List<Question>> saveRandomQuestions() {
+		ResponseEntity<List<Question>> response=null;
+
+		List<Question> questionList=new ArrayList<Question>();
+		for (int i = 0; i < 5; i++) {
+			RestTemplate restTemplate = new RestTemplate();
+			String url = "https://jservice.io/api/random";
+//			response = restTemplate.getForEntity(url, String.class);
+			
+			Question questions = restTemplate.getForObject(url, Question.class);
+
+			questionList.add(questions);
+//			if (response.getStatusCode().is2xxSuccessful()) {
+//				String responseBody = response.getBody();
+//				return ResponseEntity.ok(responseBody);
+//			} else {
+//				return ResponseEntity.status(response.getStatusCode()).body("Error: " + response.getStatusCode());
+//			}
+		}
+		
+		
+		return response;
+		
+
+		
+
+	}
+
+}

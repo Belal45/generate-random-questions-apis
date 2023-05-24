@@ -1,0 +1,17 @@
+package com.samla.main.entities;
+
+
+@Entity
+@Table(name = "categories")
+public class Categories {
+    @Id
+    private Integer id;
+    
+    private String title;
+    private String created_at;
+    private String updated_at;
+    private Integer clues_count;
+    
+    // Constructors, getters, and setters
+}
+

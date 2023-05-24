@@ -1,0 +1,60 @@
+package com.samla.main.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.samla.main.entities.Question;
+import com.samla.main.repositories.QuestionRepository;
+import com.samla.main.service.QuestionService;
+
+@RestController
+@RequestMapping("/API")
+public class MyController {
+	
+	@Autowired
+	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private QuestionService questionService;
+	
+	
+//	@RequestMapping(value="/saveQuestions" ,method=RequestMethod.GET)
+//	public ResponseEntity<List<Question>> saveRandomQuestions() {
+//
+//		RestTemplate restTemplate = new RestTemplate();
+//		String url = "https://jservice.io/api/random";
+//
+//		List<Question> questionList = new ArrayList<>();
+//
+//		for (int i = 0; i < 5; i++) {
+//			ResponseEntity<Question[]> response = restTemplate.getForEntity(url, Question[].class);
+//			Question[] questionsArray = response.getBody();
+//			if (questionsArray != null && questionsArray.length > 0) {
+//				questionList.add(questionsArray[0]);
+//			}
+//		}
+//
+//		// Save the questions to the database using your repository or service
+//		questionRepository.saveAll(questionList);
+//		return ResponseEntity.ok(questionList);
+//
+//	}
+	
+	@RequestMapping(value="/saveQuestions" ,method=RequestMethod.POST)
+	public ResponseEntity<List<Question>> saveRandomQuestions() {
+
+		List<Question> questionList = questionService.saveRandomQuestions();
+
+		return ResponseEntity.ok(questionList);
+
+	}
+	
+	
+	
+
+}

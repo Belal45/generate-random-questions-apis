@@ -1,0 +1,19 @@
+package com.samla.main.repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.samla.main.dto.QuestionDTO;
+import com.samla.main.entities.Question;
+
+public interface QuestionRepository extends JpaRepository<Question, Long> {
+	
+//	@Query("select o.id ,o.question from Question o")
+//	public List<Question> findAllQuestions();
+	
+    @Query("select new com.samla.main.dto.QuestionDTO(o.id, o.question) from Question o")
+    public List<QuestionDTO> findAllQuestions();
+
+}

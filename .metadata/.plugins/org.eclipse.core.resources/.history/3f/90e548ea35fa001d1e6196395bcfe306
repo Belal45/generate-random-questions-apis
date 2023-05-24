@@ -1,0 +1,32 @@
+package com.samla.main.entities;
+
+import java.util.Locale.Category;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "questions")
+public class Question {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String answer;
+	private String question;
+	private Integer value;
+	private String airdate;
+	private String created_at;
+	private String updated_at;
+	private Integer category_id;
+	private Integer game_id;
+	private Integer invalid_count;
+
+	@OneToOne
+	private Category category;
+
+}

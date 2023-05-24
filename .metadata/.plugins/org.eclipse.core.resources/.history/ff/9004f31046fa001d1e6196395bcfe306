@@ -1,0 +1,30 @@
+package com.samla.main.dto;
+
+public class QuestionDTO {
+    private Long id;
+    private String question;
+
+    public QuestionDTO(Long id, String question) {
+        this.id = id;
+        this.question = question;
+    }
+
+    // Getters and setters (or lombok annotations) for the fields
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+}
+

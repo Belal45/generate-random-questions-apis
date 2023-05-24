@@ -1,0 +1,18 @@
+package com.samla.main.service;
+
+import java.util.List;
+
+import com.samla.main.dto.QuestionDTO;
+import com.samla.main.dto.QuestionRequest;
+import com.samla.main.entities.Question;
+
+public interface QuestionService {
+	
+	public List<Question> saveRandomQuestions();
+	
+	public List<QuestionDTO> getQuestions();
+	
+	public List<QuestionResponse> checkQuestion(QuestionRequest questionRequest);
+	
+
+}

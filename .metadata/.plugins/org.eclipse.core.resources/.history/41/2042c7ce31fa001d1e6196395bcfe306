@@ -1,0 +1,28 @@
+package com.samla.main.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/API")
+public class MyController {
+	
+	@RequestMapping(value="/saveQuestions" ,method=RequestMethod.GET)
+	public String saveRandomQuestions() {
+		RestTemplate restTemplate = new RestTemplate();
+
+		String url = "http://api.example.com/endpoint";
+		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+		// Process the response
+		if (response.getStatusCode().is2xxSuccessful()) {
+			String responseBody = response.getBody();
+			return ResponseEntity.ok(responseBody);
+		} else {
+			return ResponseEntity.status(response.getStatusCode()).body("Error: " + response.getStatusCode());
+		}
+
+	}
+
+}

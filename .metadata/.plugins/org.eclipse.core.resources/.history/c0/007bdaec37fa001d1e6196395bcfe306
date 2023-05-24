@@ -1,0 +1,5 @@
+package com.samla.main.repositories;
+
+public interface QuestionRepository {
+
+}

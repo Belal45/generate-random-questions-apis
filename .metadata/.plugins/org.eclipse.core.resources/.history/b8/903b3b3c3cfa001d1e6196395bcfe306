@@ -1,0 +1,124 @@
+package com.samla.main.entities;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "questions")
+public class Question {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String answer;
+	private String question;
+	private Integer value;
+	private String airdate;
+	private String created_at;
+	private String updated_at;
+	@Column(insertable = false, updatable = false)
+	private Integer category_id;
+	private Integer game_id;
+	private Integer invalid_count;
+
+	@OneToOne(cascade=CascadeType.ALL)
+	private Categories category;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public Integer getValue() {
+		return value;
+	}
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+
+	public String getAirdate() {
+		return airdate;
+	}
+
+	public void setAirdate(String airdate) {
+		this.airdate = airdate;
+	}
+
+	public String getCreated_at() {
+		return created_at;
+	}
+
+	public void setCreated_at(String created_at) {
+		this.created_at = created_at;
+	}
+
+	public String getUpdated_at() {
+		return updated_at;
+	}
+
+	public void setUpdated_at(String updated_at) {
+		this.updated_at = updated_at;
+	}
+
+	public Integer getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(Integer category_id) {
+		this.category_id = category_id;
+	}
+
+	public Integer getGame_id() {
+		return game_id;
+	}
+
+	public void setGame_id(Integer game_id) {
+		this.game_id = game_id;
+	}
+
+	public Integer getInvalid_count() {
+		return invalid_count;
+	}
+
+	public void setInvalid_count(Integer invalid_count) {
+		this.invalid_count = invalid_count;
+	}
+
+	public Categories getCategory() {
+		return category;
+	}
+
+	public void setCategory(Categories category) {
+		this.category = category;
+	}
+	
+	
+	
+	
+
+}

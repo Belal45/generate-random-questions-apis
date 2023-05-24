@@ -1,0 +1,52 @@
+package com.samla.main.service.serviceImplementation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.samla.main.entities.Question;
+import com.samla.main.repositories.QuestionRepository;
+import com.samla.main.service.QuestionService;
+
+@Service
+public class QuestionServiceImpl implements QuestionService {
+	
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@Override
+	public List<Question> saveRandomQuestions() {
+		// TODO Auto-generated method stub
+
+		RestTemplate restTemplate = new RestTemplate();
+		String url = "https://jservice.io/api/random";
+
+		List<Question> questionList = new ArrayList<>();
+
+		for (int i = 0; i < 5; i++) {
+			ResponseEntity<Question[]> response = restTemplate.getForEntity(url, Question[].class);
+			Question[] questionsArray = response.getBody();
+			if (questionsArray != null && questionsArray.length > 0) {
+				questionList.add(questionsArray[0]);
+			}
+		}
+
+		// Save the questions to the database using your repository or service
+		return questionRepository.saveAll(questionList);
+
+	}
+
+	@Override
+	public List<Question> getQuestions() {
+		// TODO Auto-generated method stub
+		List<Question> res1 = questionRepository.findAllQuestions();
+		
+		System.out.println("------------------"+res1.get(0).getId());
+		return res1;
+	}
+
+}

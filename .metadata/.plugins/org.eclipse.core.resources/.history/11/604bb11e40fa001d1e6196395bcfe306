@@ -1,0 +1,9 @@
+package com.samla.main.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.samla.main.entities.Question;
+
+public interface QuestionRepository extends JpaRepository<Question, Long> {
+
+}

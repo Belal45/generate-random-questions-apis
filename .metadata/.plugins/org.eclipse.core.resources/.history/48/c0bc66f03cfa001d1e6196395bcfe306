@@ -1,0 +1,7 @@
+package com.samla.main.service;
+
+public interface QuestionService {
+	
+	 String saveRandomQuestions();
+
+}

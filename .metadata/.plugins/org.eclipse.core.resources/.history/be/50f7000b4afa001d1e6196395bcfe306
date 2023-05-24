@@ -1,0 +1,59 @@
+package com.samla.main.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.samla.main.dto.QuestionDTO;
+import com.samla.main.dto.QuestionRequest;
+import com.samla.main.dto.QuestionResponse;
+import com.samla.main.entities.Question;
+import com.samla.main.repositories.QuestionRepository;
+import com.samla.main.service.QuestionService;
+
+@RestController
+@RequestMapping("/API")
+public class MyController {
+	
+	@Autowired
+	private QuestionRepository questionRepository;
+	
+	@Autowired
+	private QuestionService questionService;
+
+	
+	@RequestMapping(value="/saveQuestions" ,method=RequestMethod.POST)
+	public ResponseEntity<List<Question>> saveRandomQuestions() {
+
+		List<Question> questionList = questionService.saveRandomQuestions();
+
+		return ResponseEntity.ok(questionList);
+
+	}
+	
+	@GetMapping("/play")
+	public ResponseEntity<List<QuestionDTO>> getQuestions() {
+
+		List<QuestionDTO> questionList = questionService.getQuestions();
+
+		return ResponseEntity.ok(questionList);
+
+	}
+	
+	@PostMapping("/next")
+	public ResponseEntity<List<QuestionResponse>> checkQuestion(@RequestBody QuestionRequest questionRequest) {
+
+		List<QuestionResponse> questionList = questionService.checkQuestion(questionRequest);
+
+		return ResponseEntity.ok(questionList);
+
+	}
+
+}
